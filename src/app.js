@@ -28,12 +28,23 @@ interactWithUser = function(channelId) {
   });
 };
 
+const resetCount = function() {
+  setTimeout(() => {
+    candidates.splice(0);
+    const choices = Object.keys(counts);
+    choices.forEach(choice => {
+      counts[choice] = 0;
+    });
+  }, 500000);
+};
+
 const removeMessage = function(channelId, timestamp) {
   setTimeout(() => {
     const url = `https://slack.com/api/chat.delete?token=${TOKEN}&channel=${channelId}&ts=${timestamp}&pretty=1`;
     request(url, (err, response, body) => {
       if (err) console.log(err);
     });
+    resetCount();
   }, 1500000);
 };
 
