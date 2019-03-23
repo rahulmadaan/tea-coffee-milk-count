@@ -1,5 +1,2 @@
-/private
 node_modules/
 package-lock.json
-.password.txt
-.token.txt
